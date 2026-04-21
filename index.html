@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project REDefine — Empowerment Through Cycle Awareness</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --crimson: #B91C1C;
+    --crimson-dark: #7F1D1D;
+    --crimson-mid: #DC2626;
+    --crimson-light: #FEF2F2;
+    --crimson-pale: #FFF5F5;
+    --text: #111111;
+    --text-mid: #444444;
+    --muted: #888888;
+    --border: #E8E8E8;
+    --border-light: #F2F2F2;
+    --bg: #FFFFFF;
+    --bg-soft: #FAFAF8;
+    --bg-warm: #F8F5F2;
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --body: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--body);
+    color: var(--text);
+    background: var(--bg);
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 72px;
+  }
+
+  .logo-area {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none; color: inherit;
+  }
+
+  /* SVG logo recreating the circular REDefine emblem */
+  .logo-svg-wrap {
+    width: 46px; height: 46px; flex-shrink: 0;
+  }
+
+  .logo-text-block { line-height: 1.15; }
+  .logo-title {
+    font-family: var(--display);
+    font-size: 1.1rem; font-weight: 600;
+    letter-spacing: 0.02em; color: var(--text);
+    display: block;
+  }
+  .logo-title span { color: var(--crimson); }
+  .logo-sub {
+    font-size: 0.68rem; font-weight: 300;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); display: block;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 400; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--text-mid);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--crimson); }
+  .nav-cta {
+    background: var(--crimson) !important;
+    color: #fff !important;
+    padding: 0.5rem 1.2rem !important;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--crimson-dark) !important; }
+
+  /* ─── HERO ─── */
+  #home {
+    min-height: 92vh;
+    display: flex; align-items: center;
+    padding: 8rem 5vw 6rem;
+    background: var(--bg);
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg-line {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 42%;
+    background: var(--bg-warm);
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 600px; }
+
+  .hero-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--crimson); font-weight: 500; margin-bottom: 1.8rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px;
+    background: var(--crimson);
+  }
+
+  .hero-headline {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 400; line-height: 1.15;
+    color: var(--text); margin-bottom: 1.6rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-headline em { font-style: italic; color: var(--crimson); }
+
+  .hero-sub {
+    font-size: 1.05rem; font-weight: 300; color: var(--text-mid);
+    margin-bottom: 3rem; max-width: 440px; line-height: 1.7;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background: var(--crimson);
+    color: #fff; font-family: var(--body);
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 1rem 2.4rem; border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .hero-cta:hover { background: var(--crimson-dark); transform: translateY(-1px); }
+
+  .hero-logo-large {
+    position: absolute; right: 6vw; top: 50%;
+    transform: translateY(-50%);
+    width: clamp(220px, 26vw, 380px); opacity: 0.92;
+    z-index: 1;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    padding: 7rem 5vw;
+  }
+
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--crimson); font-weight: 500; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before {
+    content: ''; display: block; width: 24px; height: 1px;
+    background: var(--crimson);
+  }
+
+  .section-headline {
+    font-family: var(--display);
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-weight: 400; line-height: 1.2;
+    color: var(--text); margin-bottom: 1.2rem;
+  }
+
+  .section-intro {
+    font-size: 1rem; color: var(--text-mid); max-width: 600px;
+    line-height: 1.8; margin-bottom: 4rem;
+  }
+
+  /* ─── THE CONTEXT ─── */
+  #the-context { background: var(--bg); }
+
+  .context-header { max-width: 680px; margin-bottom: 4rem; }
+
+  .silence-gap-bar {
+    background: var(--crimson-light);
+    border-left: 3px solid var(--crimson);
+    padding: 1.2rem 1.6rem;
+    margin-bottom: 4rem;
+    max-width: 680px;
+    border-radius: 0 4px 4px 0;
+  }
+  .silence-gap-bar p {
+    font-family: var(--display);
+    font-size: 1.15rem; font-style: italic;
+    color: var(--crimson-dark); line-height: 1.5;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+    max-width: 900px;
+  }
+
+  .pillar-card {
+    background: var(--bg);
+    padding: 2.5rem 2.2rem;
+    transition: background 0.2s;
+  }
+  .pillar-card:hover { background: var(--bg-soft); }
+
+  .pillar-number {
+    font-family: var(--display);
+    font-size: 3.5rem; font-weight: 300; line-height: 1;
+    color: var(--crimson-light);
+    margin-bottom: 1rem; display: block;
+  }
+
+  .pillar-title {
+    font-size: 0.95rem; font-weight: 500;
+    color: var(--text); margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+  }
+
+  .pillar-body {
+    font-size: 0.9rem; color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  /* ─── OUR VISION ─── */
+  #our-vision { background: var(--bg-warm); }
+
+  .vision-statement {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+    font-style: italic; font-weight: 300;
+    color: var(--text); line-height: 1.4;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 0; margin-bottom: 4rem;
+    max-width: 800px;
+  }
+  .vision-statement span { color: var(--crimson); font-style: normal; font-weight: 400; }
+
+  .vision-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; max-width: 960px;
+  }
+
+  .vision-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--crimson);
+    padding: 2.2rem 1.8rem;
+    border-radius: 0 0 6px 6px;
+  }
+
+  .vision-icon {
+    width: 40px; height: 40px; margin-bottom: 1.2rem;
+    color: var(--crimson);
+  }
+
+  .vision-card-title {
+    font-size: 0.95rem; font-weight: 500;
+    color: var(--text); margin-bottom: 0.8rem;
+  }
+  .vision-card-body {
+    font-size: 0.88rem; color: var(--text-mid);
+    line-height: 1.8;
+  }
+
+  /* ─── OUR MISSION ─── */
+  #our-mission { background: var(--bg); }
+
+  .mission-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: start;
+    max-width: 1000px;
+  }
+
+  .mission-quote-block {
+    background: var(--text);
+    color: #fff;
+    padding: 3rem 2.5rem;
+    border-radius: 4px;
+    position: relative;
+  }
+  .mission-quote-block::before {
+    content: '\201C';
+    font-family: var(--display);
+    font-size: 8rem; line-height: 0.8;
+    color: var(--crimson); opacity: 0.4;
+    position: absolute; top: 1.5rem; left: 1.5rem;
+    pointer-events: none;
+  }
+  .mission-quote {
+    font-family: var(--display);
+    font-size: 1.45rem; font-style: italic;
+    line-height: 1.5; position: relative; z-index: 1;
+    padding-top: 1rem;
+  }
+  .mission-quote-attr {
+    font-size: 0.75rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    margin-top: 1.5rem;
+  }
+
+  .mission-right .mission-headline {
+    font-family: var(--display);
+    font-size: 1.5rem; font-weight: 400; font-style: italic;
+    color: var(--text); line-height: 1.4;
+    margin-bottom: 2.5rem;
+  }
+
+  .commitment-list { list-style: none; }
+  .commitment-item {
+    display: flex; gap: 1.2rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .commitment-item:last-child { border-bottom: none; }
+
+  .commitment-num {
+    font-family: var(--display);
+    font-size: 1.5rem; font-weight: 300;
+    color: var(--crimson); line-height: 1;
+    flex-shrink: 0; padding-top: 0.1rem;
+  }
+  .commitment-title {
+    font-size: 0.9rem; font-weight: 500; color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .commitment-body {
+    font-size: 0.87rem; color: var(--text-mid); line-height: 1.7;
+  }
+
+  /* ─── SEED SHIELD SUCCEED BAND ─── */
+  .sss-band {
+    background: var(--crimson);
+    padding: 4rem 5vw;
+    display: flex; align-items: center; justify-content: center;
+    gap: 4rem; flex-wrap: wrap;
+  }
+  .sss-item {
+    text-align: center; color: #fff;
+  }
+  .sss-word {
+    font-family: var(--display);
+    font-size: 1.8rem; font-weight: 300;
+    letter-spacing: 0.1em; display: block;
+  }
+  .sss-def {
+    font-size: 0.72rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: rgba(255,255,255,0.65);
+    margin-top: 0.3rem;
+  }
+  .sss-divider {
+    width: 1px; height: 48px; background: rgba(255,255,255,0.25);
+  }
+
+  /* ─── SUPPORT US ─── */
+  #support-us {
+    background: var(--bg-warm);
+    text-align: center;
+    padding: 7rem 5vw;
+  }
+  #support-us .section-label { justify-content: center; }
+  #support-us .section-label::before { display: none; }
+  #support-us .section-headline { margin: 0 auto 1.2rem; }
+  #support-us .section-intro { margin: 0 auto 3rem; }
+
+  .support-cards {
+    display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .support-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 6px; padding: 2rem 1.8rem;
+    text-align: left; width: 220px;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer; text-decoration: none; color: inherit;
+    display: block;
+  }
+  .support-card:hover { border-color: var(--crimson); transform: translateY(-3px); }
+  .support-amount {
+    font-family: var(--display);
+    font-size: 2rem; font-weight: 300;
+    color: var(--crimson); display: block; margin-bottom: 0.5rem;
+  }
+  .support-desc {
+    font-size: 0.85rem; color: var(--text-mid); line-height: 1.6;
+  }
+
+  .donate-btn {
+    display: inline-block;
+    background: var(--crimson); color: #fff;
+    font-family: var(--body); font-size: 0.85rem;
+    font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 1rem 3rem;
+    border-radius: 2px; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .donate-btn:hover { background: var(--crimson-dark); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #0F0F0F; color: rgba(255,255,255,0.7);
+    padding: 4rem 5vw 2.5rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .footer-brand { }
+  .footer-logo-area { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+  .footer-logo-title {
+    font-family: var(--display); font-size: 1.05rem;
+    font-weight: 600; color: #fff;
+  }
+  .footer-logo-title span { color: var(--crimson-mid); }
+  .footer-tagline {
+    font-size: 0.8rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4);
+    margin-bottom: 1rem;
+  }
+  .footer-about {
+    font-size: 0.85rem; line-height: 1.75;
+    color: rgba(255,255,255,0.5); max-width: 280px;
+  }
+
+  .footer-col-title {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); margin-bottom: 1.2rem;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a {
+    font-size: 0.85rem; color: rgba(255,255,255,0.55);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: #fff; }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy {
+    font-size: 0.78rem; color: rgba(255,255,255,0.3);
+  }
+  .footer-donate {
+    background: var(--crimson); color: #fff;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.55rem 1.5rem; border-radius: 2px;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .footer-donate:hover { background: var(--crimson-dark); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * {
+    animation: fadeUp 0.7s ease forwards;
+    opacity: 0;
+  }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-headline { animation-delay: 0.25s; }
+  .hero-sub { animation-delay: 0.4s; }
+  .hero-cta { animation-delay: 0.55s; }
+
+  @media (max-width: 900px) {
+    .pillars-grid { grid-template-columns: 1fr; }
+    .vision-pillars { grid-template-columns: 1fr; }
+    .mission-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-logo-large { display: none; }
+    .hero-bg-line { display: none; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#home" class="logo-area">
+    <!-- Inline SVG logo approximating the circular REDefine emblem -->
+    <div class="logo-svg-wrap">
+      <svg viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg" width="46" height="46">
+        <!-- outer ring -->
+        <circle cx="23" cy="23" r="22" fill="none" stroke="#B91C1C" stroke-width="1.5"/>
+        <!-- flower petals -->
+        <ellipse cx="23" cy="14" rx="5" ry="8" fill="#DC2626" opacity="0.85"/>
+        <ellipse cx="23" cy="14" rx="5" ry="8" fill="#DC2626" opacity="0.85" transform="rotate(45 23 23)"/>
+        <ellipse cx="23" cy="14" rx="5" ry="8" fill="#DC2626" opacity="0.85" transform="rotate(90 23 23)"/>
+        <ellipse cx="23" cy="14" rx="5" ry="8" fill="#DC2626" opacity="0.85" transform="rotate(135 23 23)"/>
+        <ellipse cx="23" cy="14" rx="5" ry="8" fill="#B91C1C" opacity="0.7" transform="rotate(22.5 23 23)"/>
+        <ellipse cx="23" cy="14" rx="5" ry="8" fill="#B91C1C" opacity="0.7" transform="rotate(67.5 23 23)"/>
+        <ellipse cx="23" cy="14" rx="5" ry="8" fill="#B91C1C" opacity="0.7" transform="rotate(112.5 23 23)"/>
+        <ellipse cx="23" cy="14" rx="5" ry="8" fill="#B91C1C" opacity="0.7" transform="rotate(157.5 23 23)"/>
+        <!-- center heart -->
+        <circle cx="23" cy="23" r="6" fill="#fff"/>
+        <path d="M23 27 C23 27 18 23.5 18 21 C18 19 20 18 21.5 19.5 L23 21 L24.5 19.5 C26 18 28 19 28 21 C28 23.5 23 27 23 27Z" fill="#DC2626"/>
+        <!-- droplet tail -->
+        <path d="M23 27 Q21.5 30 23 32 Q24.5 30 23 27Z" fill="#DC2626"/>
+      </svg>
+    </div>
+    <div class="logo-text-block">
+      <span class="logo-title">Project <span>RED</span>efine</span>
+      <span class="logo-sub">Empowerment through cycle awareness</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#the-context">The Context</a></li>
+    <li><a href="#our-vision">Our Vision</a></li>
+    <li><a href="#our-mission">Our Mission</a></li>
+    <li><a href="#support-us" class="nav-cta">Support Us</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="home">
+  <div class="hero-bg-line" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Seed · Shield · Succeed</p>
+    <h1 class="hero-headline">
+      To Redefine the Narrative<br>
+      of Menstruation from<br>
+      <em>Shame to Strength.</em>
+    </h1>
+    <p class="hero-sub">
+      Empowerment through cycle awareness. Bridging the silence gap between the classroom and the living room — one community at a time.
+    </p>
+    <a href="#support-us" class="hero-cta">Support Our Mission</a>
+  </div>
+  <!-- Large decorative logo -->
+  <div class="hero-logo-large" aria-hidden="true">
+    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="150" cy="150" r="145" fill="none" stroke="#B91C1C" stroke-width="3" opacity="0.15"/>
+      <circle cx="150" cy="150" r="135" fill="none" stroke="#B91C1C" stroke-width="1" opacity="0.1"/>
+      <!-- petals -->
+      <ellipse cx="150" cy="90" rx="30" ry="55" fill="#DC2626" opacity="0.12"/>
+      <ellipse cx="150" cy="90" rx="30" ry="55" fill="#DC2626" opacity="0.12" transform="rotate(45 150 150)"/>
+      <ellipse cx="150" cy="90" rx="30" ry="55" fill="#DC2626" opacity="0.12" transform="rotate(90 150 150)"/>
+      <ellipse cx="150" cy="90" rx="30" ry="55" fill="#DC2626" opacity="0.12" transform="rotate(135 150 150)"/>
+      <ellipse cx="150" cy="90" rx="30" ry="55" fill="#B91C1C" opacity="0.09" transform="rotate(22.5 150 150)"/>
+      <ellipse cx="150" cy="90" rx="30" ry="55" fill="#B91C1C" opacity="0.09" transform="rotate(67.5 150 150)"/>
+      <ellipse cx="150" cy="90" rx="30" ry="55" fill="#B91C1C" opacity="0.09" transform="rotate(112.5 150 150)"/>
+      <ellipse cx="150" cy="90" rx="30" ry="55" fill="#B91C1C" opacity="0.09" transform="rotate(157.5 150 150)"/>
+      <circle cx="150" cy="150" r="45" fill="#FEF2F2" opacity="0.8"/>
+      <!-- heart -->
+      <path d="M150 175 C150 175 118 156 118 142 C118 133 126 128 133 134 L150 150 L167 134 C174 128 182 133 182 142 C182 156 150 175 150 175Z" fill="#DC2626" opacity="0.25"/>
+      <path d="M150 175 Q143 192 150 208 Q157 192 150 175Z" fill="#DC2626" opacity="0.2"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ─── THE CONTEXT ─── -->
+<section id="the-context">
+  <div class="context-header">
+    <p class="section-label">Why We Exist</p>
+    <h2 class="section-headline">The Context</h2>
+    <p class="section-intro">
+      While school curriculums cover the biology, they rarely address the lived reality of an adolescent girl. There is a critical silence gap between the classroom and the living room. For millions of girls, menstruation is not treated as a biological process — it is treated as a social crisis.
+    </p>
+  </div>
+
+  <div class="silence-gap-bar">
+    <p>"The chasm between what girls are taught in school and what they are expected to navigate at home — this is the silence gap Project REDefine exists to close."</p>
+  </div>
+
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <span class="pillar-number">01</span>
+      <p class="pillar-title">The Science vs. Society Disconnect</p>
+      <p class="pillar-body">Girls are taught <em>what</em> a period is, but never <em>how</em> to manage the social anxiety that surrounds it. Carrying a pad without shame, handling staining in public, advocating for their pain — the social curriculum is entirely missing from textbooks.</p>
+    </div>
+    <div class="pillar-card">
+      <span class="pillar-number">02</span>
+      <p class="pillar-title">The Burden of Household Silence</p>
+      <p class="pillar-body">In many homes, menstruation is a whisper topic. Girls avoid asking male guardians for sanitary products — resorting to unhygienic alternatives solely to sidestep an awkward conversation. Health suffers because of hesitation.</p>
+    </div>
+    <div class="pillar-card">
+      <span class="pillar-number">03</span>
+      <p class="pillar-title">The "Impurity" Narrative</p>
+      <p class="pillar-body">Cultural myths frame menstruation as dirty or impure. This psychological burden damages a girl's self-esteem at the most vulnerable stage of her adolescent development. We exist to counter these myths with a narrative of dignity.</p>
+    </div>
+    <div class="pillar-card">
+      <span class="pillar-number">04</span>
+      <p class="pillar-title">Preventable Health Risks</p>
+      <p class="pillar-body">Social stigma prevents girls from drying reusable cloth in sunlight or changing pads on schedule — directly causing severe, preventable infections. We draw the direct line between social confidence and physical safety.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── OUR VISION ─── -->
+<section id="our-vision">
+  <p class="section-label">The Future We're Building</p>
+  <h2 class="section-headline">Our Vision</h2>
+  <blockquote class="vision-statement">
+    "To build a society where the onset of menstruation is treated as a natural milestone — <span>not a disruptive burden.</span>"
+  </blockquote>
+  <div class="vision-pillars">
+    <div class="vision-card">
+      <svg class="vision-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="14" r="6" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="10" cy="16" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="30" cy="16" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M2 34 C2 27 7 24 10 24 C12 24 14 25 15 26 C16.5 24.5 18 24 20 24 C22 24 23.5 24.5 25 26 C26 25 28 24 30 24 C33 24 38 27 38 34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p class="vision-card-title">Social Normalization</p>
+      <p class="vision-card-body">A world where carrying a sanitary pad is as unremarkable as carrying a handkerchief — no hushed tones, no averted eyes in a mixed gathering.</p>
+    </div>
+    <div class="vision-card">
+      <svg class="vision-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 4 L36 14 L36 30 C36 30 28 38 20 38 C12 38 4 30 4 30 L4 14 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M14 20 L18 24 L26 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="vision-card-title">Household Integration</p>
+      <p class="vision-card-body">Fathers, brothers, and guardians are sufficiently aware and supportive — removing the emotional labor a girl must perform to hide her cycle from her own family.</p>
+    </div>
+    <div class="vision-card">
+      <svg class="vision-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 6 C20 6 10 12 10 20 C10 26 14.5 30 20 34 C25.5 30 30 26 30 20 C30 12 20 6 20 6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M16 20 L19 23 L24 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="vision-card-title">Unconditional Dignity</p>
+      <p class="vision-card-body">No girl misses a day of school, a sports event, or a social gathering due to fear of judgment or lack of access to hygienic resources. Participation is unconditional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── OUR MISSION ─── -->
+<section id="our-mission">
+  <p class="section-label">What We Do</p>
+  <h2 class="section-headline">Our Mission</h2>
+  <div class="mission-layout">
+    <div class="mission-quote-block">
+      <p class="mission-quote">We are not just distributing products — we are distributing confidence.</p>
+      <p class="mission-quote-attr">— Project REDefine Core Commitment</p>
+    </div>
+    <div class="mission-right">
+      <p class="mission-headline">To humanize menstrual health education by taking the conversation directly to where girls live and learn.</p>
+      <ul class="commitment-list">
+        <li class="commitment-item">
+          <span class="commitment-num">01</span>
+          <div>
+            <p class="commitment-title">Onsite Safe Space Creation</p>
+            <p class="commitment-body">Physically convening in schools and communities to create environments where no question is too embarrassing to ask. Face-to-face interaction dismantles the fear that isolation creates.</p>
+          </div>
+        </li>
+        <li class="commitment-item">
+          <span class="commitment-num">02</span>
+          <div>
+            <p class="commitment-title">Emotional & Social Readiness</p>
+            <p class="commitment-body">Equipping girls with the social scripts they need — exact language to articulate their needs, and to navigate situations like staining or pain with composure rather than panic.</p>
+          </div>
+        </li>
+        <li class="commitment-item">
+          <span class="commitment-num">03</span>
+          <div>
+            <p class="commitment-title">Systemic Desensitization</p>
+            <p class="commitment-body">Actively involving parents, guardians, and peers in our awareness drives. We strip away taboo layers until menstruation is viewed simply as a standard aspect of adolescent health.</p>
+          </div>
+        </li>
+        <li class="commitment-item">
+          <span class="commitment-num">04</span>
+          <div>
+            <p class="commitment-title">Bridging the Access Gap</p>
+            <p class="commitment-body">Connecting underserved communities with sustainable, affordable, and safe menstrual products. Awareness without access is incomplete — we close the loop.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SEED SHIELD SUCCEED ─── -->
+<div class="sss-band" aria-label="Our three pillars: Seed, Shield, Succeed">
+  <div class="sss-item">
+    <span class="sss-word">Seed</span>
+    <span class="sss-def">Awareness</span>
+  </div>
+  <div class="sss-divider" aria-hidden="true"></div>
+  <div class="sss-item">
+    <span class="sss-word">Shield</span>
+    <span class="sss-def">Dignity</span>
+  </div>
+  <div class="sss-divider" aria-hidden="true"></div>
+  <div class="sss-item">
+    <span class="sss-word">Succeed</span>
+    <span class="sss-def">Empowerment</span>
+  </div>
+</div>
+
+<!-- ─── SUPPORT US ─── -->
+<section id="support-us">
+  <p class="section-label">Make a Difference</p>
+  <h2 class="section-headline">Support Our Mission</h2>
+  <p class="section-intro">
+    Every contribution helps us reach more girls, create more safe spaces, and distribute more confidence. Join us in redefining the narrative.
+  </p>
+  <div class="support-cards">
+    <a href="#" class="support-card">
+      <span class="support-amount">₹500</span>
+      <p class="support-desc">Provides hygiene products for one girl for three months.</p>
+    </a>
+    <a href="#" class="support-card">
+      <span class="support-amount">₹1,500</span>
+      <p class="support-desc">Funds a full safe space session for a community of 20 girls.</p>
+    </a>
+    <a href="#" class="support-card">
+      <span class="support-amount">₹5,000</span>
+      <p class="support-desc">Sponsors a trained facilitator for an entire outreach program.</p>
+    </a>
+  </div>
+  <a href="#" class="donate-btn">Donate Now</a>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-area">
+        <svg viewBox="0 0 36 36" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="17" fill="none" stroke="#DC2626" stroke-width="1.5" opacity="0.5"/>
+          <ellipse cx="18" cy="11" rx="4" ry="7" fill="#DC2626" opacity="0.7"/>
+          <ellipse cx="18" cy="11" rx="4" ry="7" fill="#DC2626" opacity="0.7" transform="rotate(60 18 18)"/>
+          <ellipse cx="18" cy="11" rx="4" ry="7" fill="#DC2626" opacity="0.7" transform="rotate(120 18 18)"/>
+          <ellipse cx="18" cy="11" rx="4" ry="7" fill="#DC2626" opacity="0.5" transform="rotate(30 18 18)"/>
+          <ellipse cx="18" cy="11" rx="4" ry="7" fill="#DC2626" opacity="0.5" transform="rotate(90 18 18)"/>
+          <ellipse cx="18" cy="11" rx="4" ry="7" fill="#DC2626" opacity="0.5" transform="rotate(150 18 18)"/>
+          <circle cx="18" cy="18" r="5" fill="#1a1a1a"/>
+          <path d="M18 21 C18 21 14.5 18.8 14.5 17.2 C14.5 16.1 15.6 15.5 16.5 16.3 L18 17.6 L19.5 16.3 C20.4 15.5 21.5 16.1 21.5 17.2 C21.5 18.8 18 21 18 21Z" fill="#DC2626"/>
+          <path d="M18 21 Q17 23 18 24.5 Q19 23 18 21Z" fill="#DC2626"/>
+        </svg>
+        <span class="footer-logo-title">Project <span>RED</span>efine</span>
+      </div>
+      <p class="footer-tagline">Empowerment through cycle awareness</p>
+      <p class="footer-about">Bridging the silence gap in menstrual health education. Taking the conversation directly to where girls live and learn.</p>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Navigate</p>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#the-context">The Context</a></li>
+        <li><a href="#our-vision">Our Vision</a></li>
+        <li><a href="#our-mission">Our Mission</a></li>
+        <li><a href="#support-us">Support Us</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Connect</p>
+      <ul class="footer-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Project REDefine — Confidential Strategic Document. All rights reserved.</p>
+    <a href="#support-us" class="footer-donate">Donate / Support</a>
+  </div>
+</footer>
+
+</body>
+</html>
